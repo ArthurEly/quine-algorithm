@@ -1,38 +1,106 @@
-.App {
-  text-align: center;
+.pageContainer{
+
+  height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.resultsContainer{
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.form{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.form label{
+  width: 100px;
+}
+
+.horizontalContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+}
+
+.functionsContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+}
+
+.spc{
+  justify-content: space-evenly;
+}
+
+.left{
+  justify-content: flex-end;
+}
+
+.cel{
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cel.minTerms{
+  width: auto;
+  min-width: 50px;
+}
+
+.tableCels{
+  border-left: 1px solid black;
+  border-top: 1px solid black;
+  border-right: none;
+  border-bottom: none;
+}
+
+.table{
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.title{
+  display: flex;
+  flex-direction: row;
+}
+
+.columns,
+.lines{
+  width: 300px;
+}
+
+.lines{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: flex-end;
+  justify-content: space-around;
 }
 
-.App-link {
-  color: #61dafb;
+.term{
+  margin: 0 1px;
+  position: relative;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.term.negate::before{
+  content: '';
+  height: 1px;
+  background-color: black;
+  position: absolute;
+  top: 1px;
+  right: 0;
+  left: 0;
+}
+
+.primesContainer{
+  display: flex;
+  flex-direction: row;
 }
