@@ -22,10 +22,12 @@ export default function rotina(answer1, dontCares, variables){
             var loopTry = true;
             var allPrimes = [];
             var loopCounter = 0;
-            var grupoDoCaralho = [];
-    
+
             while (loopTry){
                 var {newTry, newGroup} = minimizeGroups(loopCounter, loopGroups, variables);
+                
+                console.log(newGroup);
+
                 newGroup = organizateGroups(newGroup);
                 newGroup.forEach((group)=>{
                     group.forEach((primes)=>{ 
@@ -205,20 +207,14 @@ function minimizeGroups(column, groups, variables){
                 var nobleMinTerm = column === 0;
                 for(var k=0; k<groups[i+1].length; k++){
                     var {index, diffBits} = compareBinary(groups[i][j].binary, groups[i+1][k].binary, variables);
-                    // console.log(numbers);
-                    // console.log(groups[i][j]);
-                    // console.log(groups[i+1][k]);
+
                     if (diffBits === 1 && (groups[i][j].column === groups[i+1][k].column)){
-                        //@TODO
-                        //~gambiarra~
                         if(!numbers.includes(groups[i][j].numbers)) numbers.push(groups[i][j].numbers);
                         if(!numbers.includes(groups[i+1][k].numbers)) numbers.push(groups[i+1][k].numbers);
-                        //~gambiarra~
                         
                         nobleMinTerm = false;
                         newTry = true;
-                        //console.log(groups[i][j].numbers +" and "+groups[i+1][k].numbers +" are eligible");
-                        //console.log("and we should put a - on "+index+" index");
+
                         var aux = groups[i][j].binary.slice();
                         aux[index] = "-";
                         newGroup.push({column: column+1, numbers: [groups[i][j].numbers, groups[i+1][k].numbers], binary: aux});

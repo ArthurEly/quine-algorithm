@@ -1,22 +1,44 @@
-.pageContainer{
+:root{
+  --table-color: aqua;
+  --table-border-width: 3px;
+  --text-color: yellow;
+}
 
+.pageContainer{
   height: 100vh;
 }
 
-.resultsContainer{
+.inputsContainer{
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
 
+.resultsContainer{
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 75%;
+  background: linear-gradient(180deg, rgba(0,12,194,1) 0%, rgba(0,37,255,1) 100%);
 }
 
 .form{
   display: flex;
   justify-content: space-between;
-  align-items: center;
   flex-direction: column;
   gap: 20px;
 }
 
 .form label{
   width: 100px;
+}
+
+.form input{
+  width: 200px;
 }
 
 .horizontalContainer{
@@ -36,7 +58,9 @@
 }
 
 .spc{
-  justify-content: space-evenly;
+  justify-content: space-between;
+  padding-right: 100px;
+  box-sizing: border-box;
 }
 
 .left{
@@ -57,15 +81,17 @@
 }
 
 .tableCels{
-  border-left: 1px solid black;
-  border-top: 1px solid black;
+  border-left: var(--table-border-width) solid var(--table-color);
+  border-top: var(--table-border-width) solid var(--table-color);
   border-right: none;
   border-bottom: none;
+  font-size: 1.3rem;
+  font-weight: bold;
 }
 
 .table{
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
+  border-right: var(--table-border-width) solid var(--table-color);
+  border-bottom: var(--table-border-width) solid var(--table-color);
 }
 
 .title{
@@ -93,7 +119,7 @@
 .term.negate::before{
   content: '';
   height: 1px;
-  background-color: black;
+  background-color: var(--text-color);
   position: absolute;
   top: 1px;
   right: 0;

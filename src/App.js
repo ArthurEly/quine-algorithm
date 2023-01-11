@@ -6,18 +6,26 @@ import rotina, {getFunctions} from "./scripts/quine"
 
 function App() {
   const [results, setResults] = useState(null);
-  // var {minTerms, primes, table} = rotina("4 7 8 9","0 2 6 11 13 14",4);
 
-  // setResults({minTerms, primes, table})
   var resultsComponent = <Results data={results}/>;
-  const [minTerms, setMinTerms] = useState("");
+  const [minTerms, setMinTerms] = useState(null);
   const [dontCares, setDontCares] = useState("");
-  const [variablesQty, setVariablesQty] = useState("");
-
+  const [variablesQty, setVariablesQty] = useState('1');
+  const [message, setMessage] = useState("Aguardando inputs...")
+  console.log(variablesQty);
+  
   const handleSubmit = (event) => {
     event.preventDefault();
-    setVariablesQty(parseInt(variablesQty));
-    setResults(rotina(minTerms,dontCares,variablesQty))
+    if (minTerms === null){
+      setMessage("Preencha os mintermos!!!")
+    }else{
+      setVariablesQty(parseInt(variablesQty));
+      try{
+        setResults(rotina(minTerms,dontCares,variablesQty))
+      }catch{
+        setMessage("Deu treta")
+      }
+    }
   }
   
   return (
@@ -39,16 +47,17 @@ function App() {
             />
           </label>
           <label>nro variáveis:
-            <input 
-              type="text" 
-              value={variablesQty}
-              onChange={(e) => setVariablesQty(e.target.value)}
-            />
+            <select value={variablesQty} onChange={(value) => setVariablesQty(value.target.value)}>
+              <option selected value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
           </label>
           <input type="submit" />
         </form>
       </div>
-      {results !== null ? resultsComponent : <>digita algo ai cabeça</>}
+      {results !== null ? resultsComponent : <div className="resultsContainer withoutResults">{message}</div>}
     </div>
   )
 }
