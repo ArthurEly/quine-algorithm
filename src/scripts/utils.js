@@ -1,14 +1,15 @@
 function binaryToLogicFunction(binary){
-    const terms = ["A","B","C","D"];
     const logicFunction = [];
+    const initialLetter = "A"
+    const initialPosition = initialLetter.charCodeAt();
 
-    for(var i=0; i<binary.length;i++){
-        var negate = false;
+    for(var i=0; i<binary.length; i++){
         if (binary[i] !== "-"){
+            var negate = false;
             if (binary[i] === "0"){
                 negate = true;
             }
-            logicFunction.push(<span className={`term ${negate ? 'negate' : ''}`}>{terms[i]}</span>)
+            logicFunction.push(<span className={`term ${negate ? 'negate' : ''}`}>{String.fromCharCode(initialPosition + i)}</span>)
         }
 
     }

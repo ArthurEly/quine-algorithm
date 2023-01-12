@@ -25,8 +25,6 @@ export default function rotina(answer1, dontCares, variables){
 
             while (loopTry){
                 var {newTry, newGroup} = minimizeGroups(loopCounter, loopGroups, variables);
-                
-                console.log(newGroup);
 
                 newGroup = organizateGroups(newGroup);
                 newGroup.forEach((group)=>{
@@ -184,7 +182,7 @@ function createGroups(numberArray, variables){
 function organizateGroups(groups){
     var organizedGroups = [[],[],[],[],[]];
 
-    groups.map((minTerm)=>{
+    groups.forEach((minTerm)=>{
         var counter = countOnes(minTerm.binary);
         organizedGroups[counter].push({column: minTerm.column, numbers: minTerm.numbers, binary: minTerm.binary});
     }) 
