@@ -4,8 +4,8 @@ import {createComponent} from "../../scripts/utils"
 
 export default function Results({data}) {
     var {minTerms, finalExp, table} = data;
-    var {essentialPrimes, othersPrimes} = getFunctions(finalExp, table);
 
+    var {essentialPrimes, othersPrimes} = getFunctions(finalExp, table);
     var essentialPrimesComponent = createComponent(essentialPrimes);
     var othersPrimesComponent = createComponent(othersPrimes);
     const [constant, setConstant] = useState(null);
@@ -18,8 +18,6 @@ export default function Results({data}) {
             auxTable[i] = table[i].slice();
         }
         
-        console.log(table);
-        console.log(auxTable);
         for(var j=0; j<auxTable[0].length; j++){
             var counter = 0;
             for(var i=0; i<auxTable.length; i++){

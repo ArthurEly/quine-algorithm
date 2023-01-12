@@ -9,6 +9,7 @@ function binaryToLogicFunction(binary){
             if (binary[i] === "0"){
                 negate = true;
             }
+
             logicFunction.push(<span className={`term ${negate ? 'negate' : ''}`}>{String.fromCharCode(initialPosition + i)}</span>)
         }
 
@@ -31,7 +32,6 @@ export function createComponent(array){
 
 //mover pra ultils
 export function stringArrayToIntArray(array, variables){
-    console.log(array)
     const results = array.split(' ').filter(numero => (numero != '' && numero < Math.pow(2, variables)))
     var numberArray = results.map(Number);
     return numberArray.sort((a,b)=>a-b);

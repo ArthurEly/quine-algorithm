@@ -134,8 +134,6 @@ export function getFunctions(primes, table){
     var essentialPrimes = [];
     var row = 0;
     var xPositions = [];
-    //console.log(primes);
-    //sim
 
     //get essentials primes
     for (var j=0; j<(table[0].length); j++){
@@ -148,7 +146,9 @@ export function getFunctions(primes, table){
             }
         }
         if (counter === 1){
-            essentialPrimes.push(primes[row]);
+            if(!essentialPrimes.includes(primes[row])){
+                essentialPrimes.push(primes[row]);
+            }
         } 
     }
 
