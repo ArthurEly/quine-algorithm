@@ -159,8 +159,7 @@ export function getFunctions(primes, table){
     //get others primes
     //the algorithm will choose the smallests expressions first
     //this loop will continue while the xPositions array not empty
-
-    for(i=0; (xPositions.length > 0); i++){
+    for(i=0; (xPositions.length > 0);){
         if (!essentialPrimes.includes(primes[xPositions[i][0]]) && xPositions.length > 0){
             // console.log(primes[position]);
             if (!hasDuplicatedFunction(primes[xPositions[i][0]].binary, othersPrimes)){

@@ -9,9 +9,9 @@ function App() {
   const [results, setResults] = useState(null);
 
   var resultsComponent = <Results data={results}/>;
-  const [minTerms, setMinTerms] = useState("4 8 5 6 9 10 13");
-  const [dontCares, setDontCares] = useState("0 7 15");
-  const [variablesQty, setVariablesQty] = useState('4');
+  const [minTerms, setMinTerms] = useState("1 2 3 5 6 8 10 16 19 21 22 24 25 31 34 35 36 38 39 40 41 42 43 46 48 49 50 51 56 60");
+  const [dontCares, setDontCares] = useState("");
+  const [variablesQty, setVariablesQty] = useState('6');
   const [message, setMessage] = useState("Aguardando inputs...")
   
   const handleSubmit = (event) => {
@@ -47,7 +47,7 @@ function App() {
             />
           </label>
           <label>nro variáveis:
-            <select value={variablesQty} onChange={(value) => setVariablesQty(value.target.value)}>
+            <select defaultValue={variablesQty} onChange={(value) => setVariablesQty(value.target.value)}>
               <option selected value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
