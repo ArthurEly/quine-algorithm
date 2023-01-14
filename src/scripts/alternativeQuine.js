@@ -22,11 +22,11 @@ export default function rotina(answer1, dontCares, variables){
             var loopGroups = firstGroups;
             var loopTry = true;
             var finalExp = [];
-
+            var columns = [firstGroups];
             while (loopTry){
                 // console.log('entrei de novo');
                 var {newTry, newGroup, finalExpressions} = minimizeGroupsAlternative(loopGroups, variables);
-
+                columns.push(newGroup);
                 // console.log(newGroup);
                 // console.log(finalExpressions);
 
@@ -39,7 +39,6 @@ export default function rotina(answer1, dontCares, variables){
                 loopGroups = newGroup;
                 loopTry = newTry;
             }
-
             // console.log(finalExp);
             
             var minTerms = getAllValidMinTerms(dontCares, finalExp);
@@ -48,7 +47,7 @@ export default function rotina(answer1, dontCares, variables){
             var table = createTable(finalExp, minTerms);
             // console.log(table)
 
-            return {finalExp, minTerms, table};
+            return {finalExp, minTerms, table, columns};
         }
     }
 }

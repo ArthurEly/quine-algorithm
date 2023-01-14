@@ -37,7 +37,7 @@ export default function rotina(answer1, dontCares, variables){
                 loopTry = newTry;
                 loopCounter+=1;
             }
-    
+
             // console.log(allPrimes);
             var primes = cleanPrimes(allPrimes);
             //console.log(primes);

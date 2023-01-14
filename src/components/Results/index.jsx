@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import rotina, {getFunctions} from "../../scripts/alternativeQuine"
+import {getFunctions} from "../../scripts/alternativeQuine"
 import {createComponent} from "../../scripts/utils"
+import { createColumns } from '../../scripts/utils';
 
 export default function Results({data}) {
-    var {minTerms, finalExp, table} = data;
+    var {minTerms, finalExp, table, columns} = data;
+
+    var columnsComponent = createColumns(columns);
 
     var {essentialPrimes, othersPrimes} = getFunctions(finalExp, table);
     var essentialPrimesComponent = createComponent(essentialPrimes);
     var othersPrimesComponent = createComponent(othersPrimes);
+
     const [constant, setConstant] = useState(null);
     
     const modifyTable = (table) => {
@@ -38,32 +42,44 @@ export default function Results({data}) {
 
     var newTable = modifyTable(table);
     
-    const checkTable = (table)=>{
-        setConstant(null);
-        var xs = 0;
-        var tableArea = table.length * table[0].length;
-
-        for(var i=0; i<table.length; i++){
-            for(var j=0; j<table[0].length; j++){
-                if (table[i][j] === 'x' || table[i][j] === 'X'){
-                    xs+=1;
-                }
-            }
-        }
-
-        if(xs === 0)
-            setConstant(0)
-        else if (xs === tableArea)
-            setConstant(1)
-
-    }
-
-    useEffect(()=>{
-        checkTable(table);
-    },[table])
+    console.log(essentialPrimes);
 
     return (
         <div className="resultsContainer">
+            <div className='columnsContainer'>
+                {
+                    columnsComponent.map((column,i)=>{
+                        return(
+                            i !== columnsComponent.length-1 ? 
+                            <div className='column'>
+                                <h2 className='tile'>Coluna {i}</h2>
+                                {
+                                    column.map((row,i)=>{
+                                        return(
+                                            <div className={`row ${i % 2 === 0 ? 'even' : 'odd'}`}>
+                                            {
+                                                row.map((expression,i)=>{
+                                                    return(
+                                                        <div className={`expression`}>
+                                                            <span className='minTerms'>({expression.numbers.map((number, i) => {
+                                                                return(<>{number}{i === (expression.numbers.length-1) ?  "" : ", "}</>)
+                                                            })})</span>
+                                                            <span className='binary'>{expression.binary}</span>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        :
+                        <></>
+                        )
+                    })
+                }
+            </div>
             <div className="horizontalContainer">
                 <div className="columns">
                 
@@ -125,15 +141,10 @@ export default function Results({data}) {
                 </div> */}
                 <h2>Suggested function</h2>
                 { 
-                    constant === null ? 
                     <div className="function">
                         { essentialPrimesComponent }
                         { (othersPrimesComponent.length > 0 && essentialPrimesComponent.length > 0) ? "+" : ""}
                         { othersPrimesComponent } 
-                    </div>
-                    :
-                    <div className="function">
-                        { constant }
                     </div>
                 }
             </div>

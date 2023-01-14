@@ -2,16 +2,14 @@ import React, {useEffect, useState} from "react"
 import logo from './logo.svg';
 import './App.css';
 import Results from "./components/Results";
-import rotina, {getFunctions} from "./scripts/quine"
-import rotina2 from "./scripts/alternativeQuine"
+import rotina from "./scripts/alternativeQuine"
 
 function App() {
   const [results, setResults] = useState(null);
 
-  var resultsComponent = <Results data={results}/>;
-  const [minTerms, setMinTerms] = useState("1 2 3 5 6 8 10 16 19 21 22 24 25 31 34 35 36 38 39 40 41 42 43 46 48 49 50 51 56 60");
-  const [dontCares, setDontCares] = useState("");
-  const [variablesQty, setVariablesQty] = useState('6');
+  const [minTerms, setMinTerms] = useState("4 8 5 6 9 10 13");
+  const [dontCares, setDontCares] = useState("0 7 15");
+  const [variablesQty, setVariablesQty] = useState('4');
   const [message, setMessage] = useState("Aguardando inputs...")
   
   const handleSubmit = (event) => {
@@ -21,13 +19,19 @@ function App() {
     }else{
       setVariablesQty(parseInt(variablesQty));
       try{
-        setResults(rotina2(minTerms,dontCares,variablesQty))
+        if(minTerms.length > 0){
+          setResults(rotina(minTerms,dontCares,variablesQty))
+        }else{
+          alert('Se tua função não tem minTermos, ela é falsa/igual a 0.\nPreencha os minTermos!!')
+        }
       }catch{
         setMessage("Deu treta")
       }
     }
   }
   
+  var resultsComponent = <Results data={results}/>;
+
   return (
     <div className="pageContainer">
       <div className="inputsContainer">
@@ -59,7 +63,7 @@ function App() {
           <input type="submit" />
         </form>
       </div>
-      {results !== null ? resultsComponent : <div className="resultsContainer withoutResults">{message}</div>}
+      {results !== null ? resultsComponent : <div className="resultsContainer withoutResults">{message}<br/>Se nao tiveres minTermos na tua função, a função é falsa/igual a zero</div>}
     </div>
   )
 }

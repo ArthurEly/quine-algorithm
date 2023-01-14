@@ -4,6 +4,10 @@
   --text-color: yellow;
 }
 
+.withoutResults{
+  text-align: center;
+}
+
 .pageContainer{
   color: var(--text-color);
   min-height: 100vh;
@@ -21,7 +25,61 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
+  width: 100%;
+}
+
+.columnsContainer{
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30px;
+}
+
+.columnsContainer .column{
+  width: 100%;
+  margin: 0 auto;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+
+.columnsContainer .column .row{
+  width: 100%;
+}
+
+.columnsContainer .column .expression{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  border-top: 2px solid var(--table-color);
+  border-right: 2px solid var(--table-color);
+  border-left: 2px solid var(--table-color);
+}
+
+.minTerms,
+.binary{
+  min-width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.columnsContainer .column .expression:last-of-type{
+  border-bottom: 2px solid var(--table-color);
+}
+
+.columnsContainer .column .row.even{
+  background-color: rgb(0, 10, 151);
+}
+
+.columnsContainer .column .row.odd{
+  background-color: rgb(0, 4, 63);
 }
 
 .resultsContainer{
@@ -68,7 +126,7 @@
 
 .spc{
   justify-content: space-between;
-  padding-right: 100px;
+  padding-right: 10px;
   box-sizing: border-box;
 }
 
