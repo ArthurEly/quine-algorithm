@@ -37,9 +37,9 @@
 }
 
 .columnsContainer .column{
-  width: 100%;
+  width: fit-content;
+  min-width: 300px;
   margin: 0 auto;
-  max-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,11 +49,14 @@
 
 .columnsContainer .column .row{
   width: 100%;
+
 }
 
 .columnsContainer .column .expression{
   display: flex;
   justify-content: space-between;
+  flex-direction: row;
+  gap: 10px;
   width: 100%;
   padding: 5px 10px;
   box-sizing: border-box;
