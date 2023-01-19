@@ -14,7 +14,7 @@ function binaryToLogicFunction(binary){
             tautology = false;
             logicFunction.push(<span className={`term ${negate ? 'negate' : ''}`}>{String.fromCharCode(initialPosition + i)}</span>)
         }
-        if(tautology){
+        if(tautology && i === binary.length-1){
             logicFunction.push(<span className={`term`}>1</span>)
             return logicFunction;
         }
